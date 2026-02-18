@@ -1,0 +1,78 @@
+<Document>
+  <Engineering version="V15.1" />
+  <SW.Blocks.FB ID="0">
+    <AttributeList>
+      <Name>MotorControl</Name>
+      <HeaderAuthor>Pat</HeaderAuthor>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text>Controls a motor with start/stop logic</Text>
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="3" CompositionName="CompileUnits">
+        <AttributeList>
+          <OrderNumber>1</OrderNumber>
+          <Scope>GlobalVariable</Scope>
+          <Language>SCL</Language>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="4" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="5" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+        <StatementList>
+          <Token Text="IF" />
+          <Token Text=" " />
+          <Token Text="&quot;StartBtn&quot;" />
+          <Token Text=" " />
+          <Token Text="AND" />
+          <Token Text=" " />
+          <Token Text="NOT" />
+          <Token Text=" " />
+          <Token Text="&quot;StopBtn&quot;" />
+          <Token Text=" " />
+          <Token Text="THEN" />
+          <Token Text="&#xD;&#xA;" />
+          <Token Text="    " />
+          <Token Text="&quot;MotorOut&quot;" />
+          <Token Text=" " />
+          <Token Text=":=" />
+          <Token Text=" " />
+          <Token Text="TRUE" />
+          <Token Text=";" />
+          <Token Text="&#xD;&#xA;" />
+          <Token Text="ELSIF" />
+          <Token Text=" " />
+          <Token Text="&quot;StopBtn&quot;" />
+          <Token Text=" " />
+          <Token Text="THEN" />
+          <Token Text="&#xD;&#xA;" />
+          <Token Text="    " />
+          <Token Text="&quot;MotorOut&quot;" />
+          <Token Text=" " />
+          <Token Text=":=" />
+          <Token Text=" " />
+          <Token Text="FALSE" />
+          <Token Text=";" />
+          <Token Text="&#xD;&#xA;" />
+          <Token Text="END_IF" />
+          <Token Text=";" />
+        </StatementList>
+      </SW.Blocks.CompileUnit>
+    </ObjectList>
+  </SW.Blocks.FB>
+</Document>
