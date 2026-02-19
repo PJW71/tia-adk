@@ -129,10 +129,10 @@ class TiaOpenness:
             # Some blocks might not be exportable (e.g. know-how protected without password)
             import System.IO
             file_name = f"{block.Name}.xml"
-            # Sanitize filename
-            invalid_chars = System.IO.Path.GetInvalidFileNameChars()
-            for char in invalid_chars:
-                file_name = file_name.replace(char, '_')
+            # Sanitize filename: replace invalid chars with '_' and limit length
+            file_name = re.sub(r'[<>:"/\\|?*]', '_', file_name)
+            # Handle control characters
+            file_name = "".join(c for c in file_name if c.isprintable())
                 
             path = os.path.abspath(os.path.join(export_dir, file_name))
             if block.IsConsistent: 

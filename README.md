@@ -16,7 +16,15 @@ The `tia-adk` project provides a structured way to interface with Siemens TIA Po
 ## How to Run
 
 ### 1. Installation
-Ensure you have `uv` installed, then run:
+Ensure you have `uv` installed. 
+
+> [!TIP]
+> On Windows, if you encounter an error activating the virtual environment in PowerShell, run this command once to allow local scripts:
+> ```powershell
+> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+> ```
+
+Then run:
 ```powershell
 python -m uv sync
 ```
