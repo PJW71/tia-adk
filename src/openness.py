@@ -4,7 +4,7 @@ import os
 import clr
 
 # Standard path, can be improved with config
-TIA_API_PATH = r"C:\Program Files\Siemens\Automation\Portal V17\PublicAPI\V17"
+TIA_API_PATH = os.getenv("TIA_API_PATH", r"C:\Program Files\Siemens\Automation\Portal V17\PublicAPI\V17")
 
 class TiaOpenness:
     def __init__(self, api_path=TIA_API_PATH):

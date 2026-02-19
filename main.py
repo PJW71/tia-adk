@@ -2,6 +2,10 @@
 import argparse
 import os
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from rich.console import Console
 from rich.panel import Panel
 from src.openness import TiaOpenness
@@ -21,7 +25,7 @@ def main():
     analyze_parser = subparsers.add_parser("analyze", help="Analyze exported XML files with LLM")
     analyze_parser.add_argument("--input", "-i", default="./export", help="Input directory containing XML files")
     analyze_parser.add_argument("--output", "-o", default="./analysis", help="Output directory for analysis results")
-    analyze_parser.add_argument("--api-key", help="OpenAI API Key")
+    analyze_parser.add_argument("--api-key", default=os.getenv("OPENAI_API_KEY"), help="OpenAI API Key")
     analyze_parser.add_argument("--mock", action="store_true", help="Use mock analysis for testing")
 
     args = parser.parse_args()
