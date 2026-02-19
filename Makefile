@@ -6,7 +6,7 @@ help:
 	@echo "  make analyse       - Analyze exported XML files using LLM"
 
 xml-from-tia:
-	uv run python main.py export
+	uv run python main.py export $(ARGS)
 
 analyse:
-	uv run python main.py analyze
+	uv run python main.py analyze $(ARGS)

@@ -1,13 +1,19 @@
 
 import sys
 import os
-import clr
 
 # Standard path, can be improved with config
 TIA_API_PATH = os.getenv("TIA_API_PATH", r"C:\Program Files\Siemens\Automation\Portal V17\PublicAPI\V17")
 
 class TiaOpenness:
     def __init__(self, api_path=TIA_API_PATH):
+        try:
+            import clr
+        except ImportError:
+            raise ImportError("pythonnet is required for TIA Portal Openness. Please install it with 'pip install pythonnet'.")
+        except RuntimeError as e:
+             raise RuntimeError(f"Failed to initialize .NET runtime: {e}. Ensure you are on Windows or have Mono installed.")
+
         self.api_path = api_path
         self.tia_portal = None
         self.project = None
@@ -23,6 +29,7 @@ class TiaOpenness:
             raise FileNotFoundError(f"DLL not found: {dll_path}")
 
         try:
+            import clr
             clr.AddReference(dll_path)
             import Siemens.Engineering
             print(f"Successfully loaded Siemens.Engineering from {dll_path}")

@@ -8,7 +8,6 @@ load_dotenv()
 
 from rich.console import Console
 from rich.panel import Panel
-from src.openness import TiaOpenness
 from src.agent import PLCAgent
 
 console = Console()
@@ -27,12 +26,14 @@ def main():
     analyze_parser.add_argument("--output", "-o", default="./analysis", help="Output directory for analysis results")
     analyze_parser.add_argument("--api-key", default=os.getenv("OPENAI_API_KEY"), help="OpenAI API Key")
     analyze_parser.add_argument("--mock", action="store_true", help="Use mock analysis for testing")
+    analyze_parser.add_argument("--limit", type=int, default=None, help="Limit number of files to analyze")
 
     args = parser.parse_args()
 
     if args.command == "export":
         console.print(Panel("Starting Export Process", style="bold green"))
         try:
+            from src.openness import TiaOpenness
             tia = TiaOpenness()
             tia.connect()
             tia.load_project()
@@ -48,7 +49,7 @@ def main():
         console.print(Panel("Starting Analysis Process", style="bold blue"))
         try:
             agent = PLCAgent(api_key=args.api_key)
-            agent.process_directory(args.input, args.output, mock=args.mock)
+            agent.process_directory(args.input, args.output, mock=args.mock, limit=args.limit)
             console.print(f"[bold blue]Analysis completed. Results in {args.output}[/bold blue]")
         except Exception as e:
             import traceback
